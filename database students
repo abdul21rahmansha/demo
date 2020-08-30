@@ -1,0 +1,465 @@
+mysql> insert into subject value("mech");
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from subject;
++-----------------+
+| list_of_subject |
++-----------------+
+| java            |
+| sql             |
+| visual basics   |
+| c&c++           |
+| mech            |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select s1.* from students s1 left outer join subject s2 on s1.department=s2.list_of_subject;
++-----------+--------------+------------------+
+| studen_id | student_name | department       |
++-----------+--------------+------------------+
+|         1 | abdul        | computer science |
+|         2 | ainul        | logic            |
+|         3 | kha          | mech             |
+|         4 | muza         | food science     |
+|         5 | abu          | csc              |
+|         6 | mubarak      | mech             |
+|         7 | sandy        | food science     |
++-----------+--------------+------------------+
+7 rows in set (0.01 sec)
+
+mysql> select s1.* from students s1 left outer join subject s2 on s1.department=s2.list_of_subject where s2.list_of
+    -> select s1.* from students s1 left outer join subject s2 on s1.department=s2.list_of_subject where s2.list_of_subject is null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select s1.* from students s1 left outer join subject s2 on s1.department=s2.list' at line 2
+mysql> select s1.* from students s1 left outer join subject s2 on s1.department=s2.list_of_subject where s2.list_of select s1.* from students s1 left outer join subject s2 on s1.department=s2.list_of_subject where s2.department is null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select s1.* from students s1 left outer join subject s2 on s1.department=s2.list' at line 1
+mysql> create table date (date_of_joining date);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> describe date;\
++-----------------+------+------+-----+---------+-------+
+| Field           | Type | Null | Key | Default | Extra |
++-----------------+------+------+-----+---------+-------+
+| date_of_joining | date | YES  |     | NULL    |       |
++-----------------+------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> delete subject;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> remove table subject;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'remove table subject' at line 1
+mysql> drop subject;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'subject' at line 1
+mysql> drop subjects;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'subjects' at line 1
+mysql> select * from subject;
++-----------------+
+| list_of_subject |
++-----------------+
+| java            |
+| sql             |
+| visual basics   |
+| c&c++           |
+| mech            |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> drop table subject;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> alter table students add table date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table date' at line 1
+mysql> alter table students add date (date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(date)' at line 1
+mysql> alter table students add date_of_join date;
+Query OK, 7 rows affected (0.29 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from subject;
+ERROR 1146 (42S02): Table 'abdulbase.subject' doesn't exist
+mysql> select * from students;
++-----------+--------------+------------------+--------------+
+| studen_id | student_name | department       | date_of_join |
++-----------+--------------+------------------+--------------+
+|         1 | abdul        | computer science | NULL         |
+|         2 | ainul        | logic            | NULL         |
+|         3 | kha          | mech             | NULL         |
+|         4 | muza         | food science     | NULL         |
+|         5 | abu          | csc              | NULL         |
+|         6 | mubarak      | mech             | NULL         |
+|         7 | sandy        | food science     | NULL         |
++-----------+--------------+------------------+--------------+
+7 rows in set (0.01 sec)
+
+mysql> truncate table sandy;
+ERROR 1146 (42S02): Table 'abdulbase.sandy' doesn't exist
+mysql> truncate table department;
+ERROR 1146 (42S02): Table 'abdulbase.department' doesn't exist
+mysql> create table sample(date_of_issue date);
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> insert into sample value (21 05 1995);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '05 1995)' at line 1
+mysql> insert into sample value (21may1995);
+ERROR 1054 (42S22): Unknown column '21may1995' in 'field list'
+mysql> insert into sample value (21051996);
+Query OK, 1 row affected, 1 warning (0.07 sec)
+
+mysql> slelect * from sample;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slelect * from sample' at line 1
+mysql> select * from sample;
++---------------+
+| date_of_issue |
++---------------+
+| 0000-00-00    |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> insert into sample value (1995-05-21);
+Query OK, 1 row affected, 1 warning (0.06 sec)
+
+mysql> select * from sample;
++---------------+
+| date_of_issue |
++---------------+
+| 0000-00-00    |
+| 0000-00-00    |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into sample value (1995-20-05);
+Query OK, 1 row affected, 1 warning (0.05 sec)
+
+mysql> select * from sample;
++---------------+
+| date_of_issue |
++---------------+
+| 0000-00-00    |
+| 0000-00-00    |
+| 0000-00-00    |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> truncate table date;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from sample;
++---------------+
+| date_of_issue |
++---------------+
+| 0000-00-00    |
+| 0000-00-00    |
+| 0000-00-00    |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> truncate table sample;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> truncate table sample;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from samp
+    -> select * from sample;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from sample' at line 2
+mysql> select * from sample;
+Empty set (0.00 sec)
+
+mysql> insert into sample value (1995-20-05);
+Query OK, 1 row affected, 1 warning (0.05 sec)
+
+mysql> select * from sample;
++---------------+
+| date_of_issue |
++---------------+
+| 0000-00-00    |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> truncate table sample;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from sample;
+Empty set (0.00 sec)
+
+mysql> alter table students drop column date_of_join;
+Query OK, 7 rows affected (0.43 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-----------+--------------+------------------+
+| studen_id | student_name | department       |
++-----------+--------------+------------------+
+|         1 | abdul        | computer science |
+|         2 | ainul        | logic            |
+|         3 | kha          | mech             |
+|         4 | muza         | food science     |
+|         5 | abu          | csc              |
+|         6 | mubarak      | mech             |
+|         7 | sandy        | food science     |
++-----------+--------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> insert into table sample values('1995-05-05');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table sample values('1995-05-05')' at line 1
+mysql> select * from sample;
+Empty set (0.00 sec)
+
+mysql> insert into table sample values('1995-05-05');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table sample values('1995-05-05')' at line 1
+mysql> alter table students add date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table students add date_of_join;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table students add date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add date' at line 1
+mysql> create table students add dates(date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add dates(date)' at line 1
+mysql> create table studentdate(date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table studentdate(dates date);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into studentdate value('1995-05-05');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> alter table students add studentdate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table students add student_date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> describe studentdate;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| dates | date | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from studentdate;
++------------+
+| dates      |
++------------+
+| 1995-05-05 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> alter table student add dates;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table students add dates;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter tabel students add dates date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabel students add dates date' at line 1
+mysql> selecte * from students;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selecte * from students' at line 1
+mysql> select * from students;
++-----------+--------------+------------------+
+| studen_id | student_name | department       |
++-----------+--------------+------------------+
+|         1 | abdul        | computer science |
+|         2 | ainul        | logic            |
+|         3 | kha          | mech             |
+|         4 | muza         | food science     |
+|         5 | abu          | csc              |
+|         6 | mubarak      | mech             |
+|         7 | sandy        | food science     |
++-----------+--------------+------------------+
+7 rows in set (0.01 sec)
+
+mysql> alter table students add date_of;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table students add date_of date;
+Query OK, 7 rows affected (0.31 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-----------+--------------+------------------+---------+
+| studen_id | student_name | department       | date_of |
++-----------+--------------+------------------+---------+
+|         1 | abdul        | computer science | NULL    |
+|         2 | ainul        | logic            | NULL    |
+|         3 | kha          | mech             | NULL    |
+|         4 | muza         | food science     | NULL    |
+|         5 | abu          | csc              | NULL    |
+|         6 | mubarak      | mech             | NULL    |
+|         7 | sandy        | food science     | NULL    |
++-----------+--------------+------------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> update students set date_of='1995-05-05' where stundent name='abdul';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name='abdul'' at line 1
+mysql> update students set date_of='1995-05-05' where stundent_name='abdul';
+ERROR 1054 (42S22): Unknown column 'stundent_name' in 'where clause'
+mysql> update students set date_of='1995-05-05' where student_name='abdul';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++-----------+--------------+------------------+------------+
+| studen_id | student_name | department       | date_of    |
++-----------+--------------+------------------+------------+
+|         1 | abdul        | computer science | 1995-05-05 |
+|         2 | ainul        | logic            | NULL       |
+|         3 | kha          | mech             | NULL       |
+|         4 | muza         | food science     | NULL       |
+|         5 | abu          | csc              | NULL       |
+|         6 | mubarak      | mech             | NULL       |
+|         7 | sandy        | food science     | NULL       |
++-----------+--------------+------------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> ^CCtrl-C -- exit!
+Aborted
+user@user-HP:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 5.5.54-0ubuntu0.12.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abdulbase          |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> use abdulbase;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> update students set date_of='1995-05-05' where student_name='mubarak';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++-----------+--------------+------------------+------------+
+| studen_id | student_name | department       | date_of    |
++-----------+--------------+------------------+------------+
+|         1 | abdul        | computer science | 1995-05-05 |
+|         2 | ainul        | logic            | NULL       |
+|         3 | kha          | mech             | NULL       |
+|         4 | muza         | food science     | NULL       |
+|         5 | abu          | csc              | NULL       |
+|         6 | mubarak      | mech             | 1995-05-05 |
+|         7 | sandy        | food science     | NULL       |
++-----------+--------------+------------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from students where date_of like %5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%5' at line 1
+mysql> select * from students where date_of like '*5';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of like '&5';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of like '%5';
++-----------+--------------+------------------+------------+
+| studen_id | student_name | department       | date_of    |
++-----------+--------------+------------------+------------+
+|         1 | abdul        | computer science | 1995-05-05 |
+|         6 | mubarak      | mech             | 1995-05-05 |
++-----------+--------------+------------------+------------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of like '%0';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of like '%null';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of like 'same';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of like 'even';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from students where date_of same;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'same' at line 1
+mysql> alter table students rename studen_id to studnet_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to studnet_id' at line 1
+mysql> alter table students studen_id rename to studnet_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studen_id rename to studnet_id' at line 1
+mysql> alter table students rename column studen_id rename to studnet_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column studen_id rename to studnet_id' at line 1
+mysql> alter table students rename column studen_id to studnet_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column studen_id to studnet_id' at line 1
+mysql> select * from students;
++-----------+--------------+------------------+------------+
+| studen_id | student_name | department       | date_of    |
++-----------+--------------+------------------+------------+
+|         1 | abdul        | computer science | 1995-05-05 |
+|         2 | ainul        | logic            | NULL       |
+|         3 | kha          | mech             | NULL       |
+|         4 | muza         | food science     | NULL       |
+|         5 | abu          | csc              | NULL       |
+|         6 | mubarak      | mech             | 1995-05-05 |
+|         7 | sandy        | food science     | NULL       |
++-----------+--------------+------------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table students change column studen_id to student_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to student_id' at line 1
+mysql> alter table students rename column studen_id to student_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column studen_id to student_id' at line 1
+mysql> create table compare(student_id int, student_name varchar(20), department varchar(25), date_of date);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into compare values (1, "rizwan", "tourism", "1995-05-04");
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into compare values (1, "ainul", "mech", "1094-02-01");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from compare;
++------------+--------------+------------+------------+
+| student_id | student_name | department | date_of    |
++------------+--------------+------------+------------+
+|          1 | rizwan       | tourism    | 1995-05-04 |
+|          1 | ainul        | mech       | 1094-02-01 |
++------------+--------------+------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table compare rename department to subject;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to subject' at line 1
+mysql> rename table compare to example;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from compare;
+ERROR 1146 (42S02): Table 'abdulbase.compare' doesn't exist
+mysql> select * from example;
++------------+--------------+------------+------------+
+| student_id | student_name | department | date_of    |
++------------+--------------+------------+------------+
+|          1 | rizwan       | tourism    | 1995-05-04 |
+|          1 | ainul        | mech       | 1094-02-01 |
++------------+--------------+------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> rename table example to compare;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select student_name, department, date
+    -> select student_name, department from compare where student_id = 1
+    -> select student_name, department from compare where student_id = 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select student_name, department from compare where student_id = 1
+select student' at line 2
+mysql> select student_name, department from compare where student_id = 1;+--------------+------------+
+| student_name | department |
++--------------+------------+
+| rizwan       | tourism    |
+| ainul        | mech       |
++--------------+------------+
+2 rows in set (0.00 sec)
+
